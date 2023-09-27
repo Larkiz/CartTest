@@ -1,8 +1,9 @@
 import { Route, Routes } from "react-router-dom";
-import { Cart } from "./Cart";
+
 import { Catalog } from "./Catalog";
 import { Navigate, Link } from "react-router-dom";
 import { useEffect } from "react";
+import { Basket } from "./Basket";
 
 export const App = () => {
   return (
@@ -14,7 +15,7 @@ export const App = () => {
       </nav>
       <Routes>
         <Route path="/" element={<Navigate to="catalog" />} />
-        <Route path="cart" element={<Cart />} />
+        <Route path="cart" element={<Basket />} />
         <Route path="catalog" element={<Catalog />} />
       </Routes>
     </>
