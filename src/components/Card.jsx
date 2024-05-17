@@ -1,18 +1,21 @@
 import { useContext } from "react";
-import { cartContext } from "../utils/Context";
+import { cartContext } from "../context/Context";
 
 export const Card = ({ product }) => {
-  let { basket, addProduct } = useContext(cartContext);
+  let { basketControl } = useContext(cartContext);
+
+  const inBasket =
+    basketControl.basket.findIndex((item) => item.id === product.id) >= 0;
 
   return (
     <div>
       <h2>{product.title}</h2>
       <p>{product.description}</p>
       <h4>{product.price} рублей</h4>
-      {basket.findIndex((item) => item.id == product.id) < 0 ? (
-        <button onClick={() => addProduct(product)}>В корзину</button>
-      ) : (
+      {inBasket ? (
         <p>В корзине</p>
+      ) : (
+        <button onClick={() => basketControl.add(product)}>В корзину</button>
       )}
     </div>
   );
